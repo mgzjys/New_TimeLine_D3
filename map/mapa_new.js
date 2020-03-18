@@ -98,7 +98,7 @@ var mapCan = d3
   .attr("width", wCan)
   .attr("height", hCan);
 d3.select("#monthday").html(
-  "Trimestre " + trimestres[trimestres.length - 1].substring(5)
+  trimestres[trimestres.length - 1].substring(5)
 );
 d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
 
