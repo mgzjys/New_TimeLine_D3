@@ -93,7 +93,7 @@ var hCan = 100;
 var wCan = 240;
 var projection = d3.geo
   .mercator()
-  .translate([410, 2140])
+//  .translate([410, 2140])
   .center([38,-85])
   .scale(2500);
 var path = d3.geo.path().projection(projection);
@@ -102,16 +102,16 @@ var map = d3
   .append("svg")
   .attr("width", wmap)
   .attr("height", hmap);
-var projectionCan = d3.geo
-  .mercator()
-  .translate([810, 1350])
-  .scale(2500);
-var pathCan = d3.geo.path().projection(projectionCan);
-var mapCan = d3
-  .select("#canarias")
-  .append("svg")
-  .attr("width", wCan)
-  .attr("height", hCan);
+//var projectionCan = d3.geo
+//  .mercator()
+//  .translate([810, 1350])
+//  .scale(2500);
+//var pathCan = d3.geo.path().projection(projectionCan);
+//var mapCan = d3
+//  .select("#canarias")
+//  .append("svg")
+//  .attr("width", wCan)
+//  .attr("height", hCan);
 
 d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
 d3.select("#monthday").html(
