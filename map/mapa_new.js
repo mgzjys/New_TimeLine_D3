@@ -137,9 +137,8 @@ d3.csv("../data/Without_Geo.csv", function(data) {
         .attr("height", height_slider);
       var yeardomain = [0, trimestres.length - 1];
       var axisyears = [
-        parseFloat(trimestres[0].substring(5)),
-
-        parseFloat(trimestres[trimestres.length - 1].substring(5))
+        trimestres[0],
+        trimestres[47]
       ];
 
       var pointerdata = [
