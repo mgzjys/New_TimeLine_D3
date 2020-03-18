@@ -60,7 +60,6 @@ var trimestres = new Array(
   "2020-03-16",
   "2020-03-17"
 );
-trimestres.reverse();
 
 function addComas(n) {
   var formatValue = d3.format("0,000");
@@ -95,6 +94,7 @@ var wCan = 240;
 var projection = d3.geo
   .mercator()
   .translate([410, 2140])
+  .center([38,-85])
   .scale(2500);
 var path = d3.geo.path().projection(projection);
 var map = d3
@@ -137,10 +137,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
         .attr("height", height_slider);
       var yeardomain = [0, trimestres.length - 1];
       var axisyears = [
-        parseFloat(trimestres[0].substring(0, 4)),
-        parseFloat(trimestres[0].substring(0, 4)),
-        parseFloat(trimestres[0].substring(0, 4)),
-        parseFloat(trimestres[trimestres.length - 1].substring(0, 4))
+        parseFloat(trimestres[0].substring(0, 4))
       ];
 
       var pointerdata = [
