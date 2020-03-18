@@ -97,10 +97,11 @@ var mapCan = d3
   .append("svg")
   .attr("width", wCan)
   .attr("height", hCan);
+
+d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
 d3.select("#monthday").html(
   trimestres[trimestres.length - 1].substring(5)
 );
-d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
 
 var height = 330,
   width = 885,
