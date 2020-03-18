@@ -15,6 +15,50 @@ var trimestres = new Array(
   "2020-01-31",
   "2020-02-01",
   "2020-02-02",
+  "2020-02-03",
+  "2020-02-04",
+  "2020-02-05",
+  "2020-02-06",
+  "2020-02-07",
+  "2020-02-08",
+  "2020-02-09",
+  "2020-02-10",
+  "2020-02-11",
+  "2020-02-12",
+  "2020-02-13",
+  "2020-02-14",
+  "2020-02-15",
+  "2020-02-16",
+  "2020-02-17",
+  "2020-02-18",
+  "2020-02-19",
+  "2020-02-20",
+  "2020-02-21",
+  "2020-02-22",
+  "2020-02-23",
+  "2020-02-24",
+  "2020-02-25",
+  "2020-02-26",
+  "2020-02-27",
+  "2020-02-28",
+  "2020-02-29",
+  "2020-03-01",
+  "2020-03-02",
+  "2020-03-03",
+  "2020-03-04",
+  "2020-03-05",
+  "2020-03-06",
+  "2020-03-07",
+  "2020-03-08",
+  "2020-03-09",
+  "2020-03-10",
+  "2020-03-11",
+  "2020-03-12",
+  "2020-03-13",
+  "2020-03-14",
+  "2020-03-15",
+  "2020-03-16",
+  "2020-03-17"
 );
 trimestres.reverse();
 
@@ -68,7 +112,7 @@ var mapCan = d3
   .append("svg")
   .attr("width", wCan)
   .attr("height", hCan);
-d3.select("#tasa").html(
+d3.select("#monthday").html(
   "Trimestre " + trimestres[trimestres.length - 1].substring(5)
 );
 d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
@@ -81,9 +125,8 @@ var w = 950,
 var aux = trimestres.length - 1;
 var width_slider = 920;
 var height_slider = 50;
-d3.csv("../data/historico.csv", function(data) {
+d3.csv("../data/Without_Geo.csv", function(data) {
   d3.json("../data/Provincias.json", function(json) {
-    d3.json("../data/canarian.json", function(can) {
       /* ------SLIDER----- */
       var svg = d3
         .select("#slider")
@@ -211,13 +254,6 @@ d3.csv("../data/historico.csv", function(data) {
             break;
           }
         }
-        for (var z = 0; z < can.features.length; z++) {
-          var canState = can.features[z].properties.code;
-          if (codeState == canState) {
-            can.features[z].properties.value = dataValue;
-            break;
-          }
-        }
       }
       var cont = map
         .selectAll("#mapa path")
@@ -236,22 +272,6 @@ d3.csv("../data/historico.csv", function(data) {
         .on("mousemove", mousemove)
         .on("mouseout", mouseout);
       //canarias
-      var isl = mapCan
-        .selectAll("#canarias path")
-        .data(can.features)
-        .enter()
-        .append("path")
-        .attr("class", "path")
-        .attr("d", pathCan)
-        .style("fill", function(d) {
-          return getColor(d.properties.value);
-        })
-        .attr("fill-opacity", "1")
-        .attr("stroke", "#202020")
-        .attr("stroke-width", 0.3)
-        .on("mouseover", mouseover)
-        .on("mousemove", mousemove)
-        .on("mouseout", mouseout);
 
       function mouseover(d) {
         d3.select(this)
@@ -289,7 +309,7 @@ d3.csv("../data/historico.csv", function(data) {
       }
       //maxMin(data, aux);
       function drawMap(index) {
-        d3.select("#tasa").html("Trimestre " + trimestres[index].substring(5));
+        d3.select("#monthday").html(trimestres[index].substring(5));
         d3.select("#year").html(trimestres[index].substring(0, 4));
         cont.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
@@ -339,13 +359,6 @@ d3.csv("../data/historico.csv", function(data) {
           for (var i = 0; i < data.length; i++) {
             var codeState = data[i].code;
             var dataValue = data[i][trimestres[index]];
-            for (var j = 0; j < can.features.length; j++) {
-              var jsonState = can.features[j].properties.code;
-              if (codeState == jsonState) {
-                can.features[j].properties.value = dataValue;
-                break;
-              }
-            }
           }
           var value = d.properties.value;
           if (value) {
@@ -428,7 +441,7 @@ d3.csv("../data/historico.csv", function(data) {
               "</span"
           );
       }
-    });
+    );
   });
 });
 
