@@ -2,48 +2,63 @@
  * Date: 2014 Oct
  */
 var trimestres = new Array(
-  "2015TII",
-  "2015TI",
-  "2014TIV",
-  "2014TIII",
-  "2014TII",
-  "2014TI",
-  "2013TIV",
-  "2013TIII",
-  "2013TII",
-  "2013TI",
-  "2012TIV",
-  "2012TIII",
-  "2012TII",
-  "2012TI",
-  "2011TIV",
-  "2011TIII",
-  "2011TII",
-  "2011TI",
-  "2010TIV",
-  "2010TIII",
-  "2010TII",
-  "2010TI",
-  "2009TIV",
-  "2009TIII",
-  "2009TII",
-  "2009TI",
-  "2008TIV",
-  "2008TIII",
-  "2008TII",
-  "2008TI",
-  "2007TIV",
-  "2007TIII",
-  "2007TII",
-  "2007TI",
-  "2006TIV",
-  "2006TIII",
-  "2006TII",
-  "2006TI",
-  "2005TIV",
-  "2005TIII",
-  "2005TII",
-  "2005TI"
+  "2020-01-21",
+  "2020-01-22",
+  "2020-01-23",
+  "2020-01-24",
+  "2020-01-25",
+  "2020-01-26",
+  "2020-01-27",
+  "2020-01-28",
+  "2020-01-29",
+  "2020-01-30",
+  "2020-01-31",
+  "2020-02-01",
+  "2020-02-02",
+  "2020-02-03",
+  "2020-02-04",
+  "2020-02-05",
+  "2020-02-06",
+  "2020-02-07",
+  "2020-02-08",
+  "2020-02-09",
+  "2020-02-10",
+  "2020-02-11",
+  "2020-02-12",
+  "2020-02-13",
+  "2020-02-14",
+  "2020-02-15",
+  "2020-02-16",
+  "2020-02-17",
+  "2020-02-18",
+  "2020-02-19",
+  "2020-02-20",
+  "2020-02-21",
+  "2020-02-22",
+  "2020-02-23",
+  "2020-02-24",
+  "2020-02-25",
+  "2020-02-26",
+  "2020-02-27",
+  "2020-02-28",
+  "2020-02-29",
+  "2020-03-01",
+  "2020-03-02",
+  "2020-03-03",
+  "2020-03-04",
+  "2020-03-05",
+  "2020-03-06",
+  "2020-03-07",
+  "2020-03-08",
+  "2020-03-09",
+  "2020-03-10",
+  "2020-03-11",
+  "2020-03-12",
+  "2020-03-13",
+  "2020-03-14",
+  "2020-03-15",
+  "2020-03-16",
+  "2020-03-17"
 );
 trimestres.reverse();
 
@@ -111,8 +126,8 @@ var w = 950,
 var aux = trimestres.length - 1;
 var width_slider = 920;
 var height_slider = 50;
-d3.csv("../data/historico.csv", function(data) {
-  d3.json("../data/Provincias.json", function(json) {
+d3.csv("../data/Without_Geo.csv", function(data) {
+  d3.json("../data/county_light.json", function(json) {
       /* ------SLIDER----- */
       var svg = d3
         .select("#slider")
@@ -230,11 +245,11 @@ d3.csv("../data/historico.csv", function(data) {
         d3.select(".cursor").style("fill", "");
       }
       for (var i = 0; i < data.length; i++) {
-        var codeState = data[i].code;
+        var codeState = data[i].fip;
         var dataValue = data[i][trimestres[trimestres.length - 1]];
         //                console.log(dataValue);
         for (var j = 0; j < json.features.length; j++) {
-          var jsonState = json.features[j].properties.code;
+          var jsonState = json.features[j].properties.fip;
           if (codeState == jsonState) {
             json.features[j].properties.value = dataValue;
             break;
@@ -268,7 +283,7 @@ d3.csv("../data/historico.csv", function(data) {
           "<b>" +
             d.properties.name +
             "</b></br>Tasa paro: <b>" +
-            addComas(data[d.properties.code][trimestres[aux]]) +
+            addComas(data[d.properties.fip][trimestres[aux]]) +
             "%</b> <br>" +
             d.properties.comunidad
         );
@@ -299,10 +314,10 @@ d3.csv("../data/historico.csv", function(data) {
         d3.select("#year").html(trimestres[index].substring(0, 4));
         cont.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
-            var codeState = data[i].code;
+            var codeState = data[i].fip;
             var dataValue = data[i][trimestres[index]];
             for (var j = 0; j < json.features.length; j++) {
-              var jsonState = json.features[j].properties.code;
+              var jsonState = json.features[j].properties.fip;
               if (codeState == jsonState) {
                 json.features[j].properties.value = dataValue;
                 break;
@@ -324,7 +339,7 @@ d3.csv("../data/historico.csv", function(data) {
                 "<b>" +
                   d.properties.name +
                   "</b></br>Tasa de paro: <b>" +
-                  addComas(data[d.properties.code][trimestres[aux]]) +
+                  addComas(data[d.properties.fip][trimestres[aux]]) +
                   "%</b> <br>" +
                   d.properties.comunidad
               )
@@ -343,7 +358,7 @@ d3.csv("../data/historico.csv", function(data) {
           .on("mouseout", mouseout);
         isl.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
-            var codeState = data[i].code;
+            var codeState = data[i].fip;
             var dataValue = data[i][trimestres[index]];
           }
           var value = d.properties.value;
@@ -361,7 +376,7 @@ d3.csv("../data/historico.csv", function(data) {
                 "<b>" +
                   d.properties.name +
                   "</b></br>Tasa de paro: <b>" +
-                  addComas(data[d.properties.code][trimestres[aux]]) +
+                  addComas(data[d.properties.fip][trimestres[aux]]) +
                   "%</b> <br>" +
                   d.properties.comunidad
               )
