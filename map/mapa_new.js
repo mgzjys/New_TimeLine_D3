@@ -97,7 +97,7 @@ var mapCan = d3
   .append("svg")
   .attr("width", wCan)
   .attr("height", hCan);
-d3.select("#tasa").html(
+d3.select("#monthday").html(
   "Trimestre " + trimestres[trimestres.length - 1].substring(5)
 );
 d3.select("#year").html(trimestres[trimestres.length - 1].substring(0, 4));
@@ -294,7 +294,7 @@ d3.csv("../data/historico.csv", function(data) {
       }
       //maxMin(data, aux);
       function drawMap(index) {
-        d3.select("#tasa").html("Trimestre " + trimestres[index].substring(5));
+        d3.select("#monthday").html("Trimestre " + trimestres[index].substring(5));
         d3.select("#year").html(trimestres[index].substring(0, 4));
         cont.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
