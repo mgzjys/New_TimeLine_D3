@@ -245,11 +245,11 @@ d3.csv("../data/Without_Geo.csv", function(data) {
         d3.select(".cursor").style("fill", "");
       }
       for (var i = 0; i < data.length; i++) {
-        var codeState = data[i].fip;
+        var codeState = data[i].fips;
         var dataValue = data[i][trimestres[trimestres.length - 1]];
         //                console.log(dataValue);
         for (var j = 0; j < json.features.length; j++) {
-          var jsonState = json.features[j].properties.fip;
+          var jsonState = json.features[j].properties.fips;
           if (codeState == jsonState) {
             json.features[j].properties.value = dataValue;
             break;
@@ -283,7 +283,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
           "<b>" +
             d.properties.name +
             "</b></br>Tasa paro: <b>" +
-            addComas(data[d.properties.fip][trimestres[aux]]) +
+            addComas(data[d.properties.fips][trimestres[aux]]) +
             "%</b> <br>" +
             d.properties.comunidad
         );
@@ -314,10 +314,10 @@ d3.csv("../data/Without_Geo.csv", function(data) {
         d3.select("#year").html(trimestres[index].substring(0, 4));
         cont.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
-            var codeState = data[i].fip;
+            var codeState = data[i].fips;
             var dataValue = data[i][trimestres[index]];
             for (var j = 0; j < json.features.length; j++) {
-              var jsonState = json.features[j].properties.fip;
+              var jsonState = json.features[j].properties.fips;
               if (codeState == jsonState) {
                 json.features[j].properties.value = dataValue;
                 break;
@@ -339,7 +339,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
                 "<b>" +
                   d.properties.name +
                   "</b></br>Tasa de paro: <b>" +
-                  addComas(data[d.properties.fip][trimestres[aux]]) +
+                  addComas(data[d.properties.fips][trimestres[aux]]) +
                   "%</b> <br>" +
                   d.properties.comunidad
               )
@@ -358,7 +358,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
           .on("mouseout", mouseout);
         isl.style("fill", function(d) {
           for (var i = 0; i < data.length; i++) {
-            var codeState = data[i].fip;
+            var codeState = data[i].fips;
             var dataValue = data[i][trimestres[index]];
           }
           var value = d.properties.value;
@@ -376,7 +376,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
                 "<b>" +
                   d.properties.name +
                   "</b></br>Tasa de paro: <b>" +
-                  addComas(data[d.properties.fip][trimestres[aux]]) +
+                  addComas(data[d.properties.fips][trimestres[aux]]) +
                   "%</b> <br>" +
                   d.properties.comunidad
               )
