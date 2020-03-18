@@ -138,7 +138,7 @@ d3.csv("../data/Without_Geo.csv", function(data) {
       var yeardomain = [0, trimestres.length - 1];
       var axisyears = [
         trimestres[0],
-        trimestres[47]
+        trimestres[trimestres.length - 1]
       ];
 
       var pointerdata = [
